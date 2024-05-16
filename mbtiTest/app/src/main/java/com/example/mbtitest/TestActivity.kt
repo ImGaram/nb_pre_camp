@@ -10,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 
 class TestActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
+    val questionnaireResults = QuestionnaireResults()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
