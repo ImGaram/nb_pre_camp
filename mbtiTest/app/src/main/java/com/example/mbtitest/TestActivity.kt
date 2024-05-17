@@ -29,7 +29,9 @@ class TestActivity : AppCompatActivity() {
 
     fun moveToNextQuestion() {
         if (viewPager.currentItem == 3) {
-
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putIntegerArrayListExtra("results", ArrayList(questionnaireResults.results))
+            startActivity(intent)
         } else {
             val nextItem = viewPager.currentItem + 1
             if (nextItem < (viewPager.adapter?.itemCount ?: 0)) {
