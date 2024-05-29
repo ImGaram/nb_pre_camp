@@ -28,7 +28,7 @@
         android:text="신장"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/ed_height"
+        app:layout_constraintEnd_toStartOf="@+id/et_height"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,11 +56,11 @@
         android:text="cm"
         android:textColor="@color/black"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/ed_height"
+        app:layout_constraintBottom_toBottomOf="@+id/et_height"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/ed_height"
-        app:layout_constraintTop_toTopOf="@+id/ed_height" />
+        app:layout_constraintStart_toEndOf="@+id/et_height"
+        app:layout_constraintTop_toTopOf="@+id/et_height" />
 
     <TextView
         android:id="@+id/textView5"
@@ -91,7 +91,7 @@
         app:layout_constraintTop_toTopOf="@+id/textView3" />
 
     <EditText
-        android:id="@+id/ed_height"
+        android:id="@+id/et_height"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
