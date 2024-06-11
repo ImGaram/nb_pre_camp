@@ -23,23 +23,27 @@ class CashShop private constructor() {
         }
     }
 
-    fun purchaseBowByArcher(character: Archer){
-        if(character.money >= bowPrice) {
-            println("[구매 후 금액]: [${character.money} - ${bowPrice}] = ${character.money-bowPrice}")
-            character.money -= bowPrice
-            character.weapons.add("슈퍼 활")
-        } else {
-            println("돈이 부족합니다.")
-        }
-    }
-
-    fun purchaseStaffByWizard(character:Wizard){
-        if(character.money >= staffPrice) {
-            println("[구매 후 금액]: [${character.money} - ${staffPrice}] = ${character.money-staffPrice}")
-            character.money -= staffPrice
-            character.weapons.add("슈퍼 스태프")
-        } else {
-            println("돈이 부족합니다.")
+    fun purchaseWeapon(character:Character){
+        if(character is Archer) {
+            character?.run {
+                if(money >= bowPrice) {
+                    println("[구매 후 금액]: [${money} - ${bowPrice}] = ${money-bowPrice}")
+                    money -= bowPrice
+                    weapons.add("슈퍼 활")
+                } else {
+                    println("돈이 부족합니다.")
+                }
+            }
+        } else if(character is Wizard) {
+            character?.run {
+                if(money >= staffPrice) {
+                    println("[구매 후 금액]: [${money} - ${staffPrice}] = ${money-staffPrice}")
+                    money -= staffPrice
+                    weapons.add("슈퍼 스태프")
+                } else {
+                    println("돈이 부족합니다.")
+                }
+            }
         }
     }
 
