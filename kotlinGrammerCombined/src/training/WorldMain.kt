@@ -81,7 +81,7 @@ fun main() {
             var myCharacter = Archer(myName, myAge, myGender, myMoney, myHp)
 
             while(true) {
-                println("[1] 슬라임동굴, [2] 좀비마을, [3] 캐쉬샵, [4] 종료")
+                println("[1] 슬라임동굴, [2] 좀비마을, [3] 캐쉬샵, [4] 로또 [5] 종료")
                 var selectNumber= inputMyInfo("selectNumber").toString().toInt()
 
                 when(selectNumber) {
@@ -95,6 +95,10 @@ fun main() {
                         openCashShop(myCharacter)
                     }
                     4 -> {
+                        var selectHorse = inputMyInfo("selectHorse").toString()
+                        startLotto(myCharacter, selectHorse)
+                    }
+                    5 -> {
                         println("게임 종료")
                         break
                     }
@@ -130,8 +134,6 @@ fun selectWorld(selectWorld:Int, myCharacter: Character) {
             slime1.poison()
         }
     } else if(selectWorld == 2) { // 좀비 던전
-
-
         if(myCharacter is Archer) {
             var zombie1 = Zombie("파랑좀비", "파랑", 142.2, 500, 25)
             zombie1.virus()
@@ -260,6 +262,21 @@ fun inputMyInfo(type:String): Any? {
                 }
             }
         }
+        "selectHorse" -> {
+            println("말의 이름을 입력해주세요")
+            while(true) {
+                try {
+                    var originName = readLine()
+                    if(originName?.equals("one") == true || originName?.equals("two") == true) {
+                        return originName
+                    } else {
+                        println("말의 이름을 다시 입력해주세요")
+                    }
+                } catch(e:Exception) {
+                    println("말의 이름을 다시 입력해주세요")
+                }
+            }
+        }
         else -> {
             return "no"
         }
@@ -278,4 +295,10 @@ fun openCashShop(character: Character) {
         cashShop.purchaseWeapon(character)
         println("구매후 무기: ${character.weapons}")
     }
+}
+
+fun startLotto(character: Character, horse: String) {
+    var cashShop = CashShop.getInstance()
+
+    cashShop.startLotto(character, horse)
 }

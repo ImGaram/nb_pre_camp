@@ -1,6 +1,11 @@
 package training.shop
 
 import training.job.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import java.util.Random
+import kotlin.concurrent.thread
 
 class CashShop private constructor() {
     private val bowPrice = 150
@@ -8,6 +13,8 @@ class CashShop private constructor() {
 
     companion object {
         @Volatile private var instance: CashShop? = null
+        @Volatile private var lottoStatus: String? = null
+        @Volatile private var isFinish: Boolean? = null
 
         fun getInstance(): CashShop {
             // 외부에서 요청왔을때 instance가 null인지 검증
@@ -47,4 +54,81 @@ class CashShop private constructor() {
         }
     }
 
+    fun startLotto(character: Character, selectHorse: String) {
+        var random = Random()
+        val finalDst = 100
+        isFinish = false
+        thread(start = true) {
+            var currentPosition = 0
+            while(currentPosition < finalDst && isFinish == false) {
+                currentPosition += (random.nextInt(5) + 1)
+
+                println("1번말 현재 위치: ${currentPosition}m")
+                runBlocking {
+                    launch {
+                        delay(1000)
+                    }
+                }
+            }
+            if(lottoStatus == null || lottoStatus != "two") {
+                lottoStatus = "one"
+                isFinish = true
+                println("1등: ${lottoStatus}말")
+
+                if(lottoStatus.equals(selectHorse)) {
+                    println("축하합니다! 당첨!")
+                    println("상금으로 1만원 지급")
+
+                    // 왜 이렇게밖에 작성했는지 이유를 생각하고
+                    // 코드를 개선하기
+                    if(character is Archer) {
+                        character?.run {
+                            money += 10000
+                        }
+                    } else if(character is Wizard) {
+                        character?.run {
+                            money += 10000
+                        }
+                    }
+                }
+            }
+
+        }
+
+        thread(start = true) {
+            var currentPosition = 0
+            while(currentPosition < finalDst && isFinish == false) {
+                currentPosition += (random.nextInt(10) + 1)
+
+                println("2번말 현재 위치: ${currentPosition}m")
+                runBlocking {
+                    launch {
+                        delay(1000)
+                    }
+                }
+            }
+            if(lottoStatus == null || lottoStatus != "one") {
+                lottoStatus = "two"
+                isFinish = true
+                println("1등: ${lottoStatus}말")
+                if(lottoStatus.equals(selectHorse)) {
+                    println("축하합니다! 당첨!")
+                    println("상금으로 1만원 지급")
+
+                    // 왜 이렇게밖에 작성했는지 이유를 생각하고
+                    // 코드를 개선하기
+                    if(character is Archer) {
+                        character?.run {
+                            money += 10000
+                        }
+                    } else if(character is Wizard) {
+                        character?.run {
+                            money += 10000
+                        }
+                    }
+                }
+            }
+
+        }
+    }
 }
