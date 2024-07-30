@@ -33,9 +33,19 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
+
+    implementation(libs.gson)
+    implementation(libs.gson.converter)
+    implementation(libs.retrofit)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.powerspinner)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
